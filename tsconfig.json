@@ -10,9 +10,5 @@
         "skipLibCheck": true,
         "allowSyntheticDefaultImports": true
     },
-    "include": [
-        "resources/js/**/*.ts",
-        "resources/js/**/*.tsx",
-        "vite.config.ts"
-    ]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "vite.config.ts"]
 }
