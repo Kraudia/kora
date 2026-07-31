@@ -8,7 +8,10 @@
         "isolatedModules": true,
         "noEmit": true,
         "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+        "@/*": ["./resources/js/*"]
+        }
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "vite.config.ts"]
 }

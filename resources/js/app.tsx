@@ -1,23 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-function App() {
-    return (
-        <main>
-            <h1>Kora 🌳</h1>
-            <p>Modern genealogy platform</p>
-        </main>
-    );
-}
+import { QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from 'react-router';
+import { queryClient } from './app/queryClient';
+import { router } from './app/router';
+import '../css/app.css';
 
 const rootElement = document.getElementById('app');
 
 if (!rootElement) {
-    throw new Error('Root element not found.');
+  throw new Error('Root element not found.');
 }
 
 ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </React.StrictMode>,
 );
