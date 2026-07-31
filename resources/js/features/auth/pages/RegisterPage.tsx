@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { register, RegisterData } from '../api/authApi';
 import { queryClient } from '@/app/queryClient';
 import { RegisterForm } from '@/components/RegisterForm';
+import { AuthPageLayout } from '@/features/auth/components/AuthPageLayout';
 
 export function RegisterPage() {
   const navigate = useNavigate();
@@ -20,14 +21,12 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <RegisterForm
-          onSubmit={handleSubmit}
-          isPending={registerMutation.isPending}
-          serverError={registerMutation.error?.message}
-        />
-      </div>
-    </div>
+    <AuthPageLayout>
+      <RegisterForm
+        onSubmit={handleSubmit}
+        isPending={registerMutation.isPending}
+        serverError={registerMutation.error?.message}
+      />
+    </AuthPageLayout>
   );
 }

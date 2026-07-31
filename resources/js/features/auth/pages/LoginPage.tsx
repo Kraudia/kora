@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { login } from '../api/authApi';
 import { queryClient } from '@/app/queryClient';
 import { LoginForm } from '@/components/LoginForm';
-import { Trees } from 'lucide-react';
 import { LoginFormData } from '@/features/auth/schemas/loginSchema';
+import { AuthPageLayout } from '@/features/auth/components/AuthPageLayout';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -25,20 +25,12 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
-      <div className="flex w-full max-w-sm flex-col gap-6">
-        <a href="#" className="flex items-center gap-2 self-center font-medium">
-          <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Trees className="size-4" />
-          </div>
-          Kora
-        </a>
-        <LoginForm
-          onSubmit={handleSubmit}
-          isPending={loginMutation.isPending}
-          serverError={loginMutation.error?.message}
-        />
-      </div>
-    </div>
+    <AuthPageLayout>
+      <LoginForm
+        onSubmit={handleSubmit}
+        isPending={loginMutation.isPending}
+        serverError={loginMutation.error?.message}
+      />
+    </AuthPageLayout>
   );
 }
