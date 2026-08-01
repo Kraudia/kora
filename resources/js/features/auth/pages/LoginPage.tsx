@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import { login } from '../api/authApi';
 import { queryClient } from '@/app/queryClient';
-import { LoginForm } from '@/components/LoginForm';
+import { LoginForm } from '../components/LoginForm';
 import { LoginFormData } from '@/features/auth/schemas/loginSchema';
 import { AuthPageLayout } from '@/features/auth/components/AuthPageLayout';
 

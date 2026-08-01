@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import { register, RegisterData } from '../api/authApi';
 import { queryClient } from '@/app/queryClient';
-import { RegisterForm } from '@/components/RegisterForm';
+import { RegisterForm } from '../components/RegisterForm';
 import { AuthPageLayout } from '@/features/auth/components/AuthPageLayout';
 
 export function RegisterPage() {

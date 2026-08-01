@@ -68,7 +68,7 @@ export function RegisterForm({ onSubmit, isPending = false, serverError }: Regis
 
             <Field>
               <FieldLabel htmlFor="password">{translations.fields.password.label}</FieldLabel>
-              <Input id="name" type="password" {...register('password')} />
+              <Input id="password" type="password" {...register('password')} />
               {errors.password && (
                 <FieldDescription className="text-destructive">
                   {errors.password.message}
