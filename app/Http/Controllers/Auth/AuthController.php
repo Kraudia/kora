@@ -14,15 +14,20 @@ class AuthController extends Controller
 {
     public function register(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => [
-                'required',
-                'confirmed',
-                Password::min(8),
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+                'password' => [
+                    'required',
+                    'confirmed',
+                    Password::min(8),
+                ],
             ],
-        ]);
+            [
+                'email.unique' => 'Konto z tym adresem e-mail już istnieje.',
+            ],
+        );
 
         $user = User::create([
             'name' => $validated['name'],
@@ -69,4 +74,3 @@ class AuthController extends Controller
         return response()->json(null, 204);
     }
 }
-

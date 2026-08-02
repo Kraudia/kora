@@ -11,7 +11,7 @@ vi.mock('../api/authApi', () => ({
   register: vi.fn(),
 }));
 
-vi.mock('@/components/RegisterForm', () => ({
+vi.mock('../components/RegisterForm', () => ({
   RegisterForm: ({
     onSubmit,
     serverError,
@@ -79,13 +79,13 @@ describe('RegisterPage', () => {
   });
 
   it('przekazuje komunikat błędu do formularza', async () => {
-    vi.mocked(register).mockRejectedValue(new Error('Adres e-mail jest już zajęty.'));
+    vi.mocked(register).mockRejectedValue(new Error('Konto z tym adresem e-mail już istnieje.'));
     renderPage();
 
-    await userEvent.click(screen.getByRole('button', { name: 'Utwórz konto' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Wyślij rejestrację' }));
 
     await waitFor(() => {
-      expect(screen.getByText('Adres e-mail jest już zajęty.')).toBeInTheDocument();
+      expect(screen.getByText('Konto z tym adresem e-mail już istnieje.')).toBeInTheDocument();
     });
   });
 });

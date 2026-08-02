@@ -11,7 +11,7 @@ vi.mock('../api/authApi', () => ({
   login: vi.fn(),
 }));
 
-vi.mock('@/components/LoginForm', () => ({
+vi.mock('../components/LoginForm', () => ({
   LoginForm: ({
     onSubmit,
     serverError,
