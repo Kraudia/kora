@@ -15,13 +15,24 @@ export class ApiError extends Error {
   }
 }
 
+function getCookie(name: string): string | undefined {
+  const cookie = document.cookie
+    .split('; ')
+    .find((entry) => entry.startsWith(`${encodeURIComponent(name)}=`));
+
+  return cookie ? decodeURIComponent(cookie.split('=').slice(1).join('=')) : undefined;
+}
+
 export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const csrfToken = getCookie('XSRF-TOKEN');
+
   const response = await fetch(path, {
     ...options,
     credentials: 'include',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      ...(csrfToken ? { 'X-XSRF-TOKEN': csrfToken } : {}),
       ...options.headers,
     },
   });

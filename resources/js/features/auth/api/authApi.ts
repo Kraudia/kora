@@ -51,7 +51,9 @@ export function getCurrentUser(): Promise<User> {
   return apiRequest<User>('/api/user');
 }
 
-export function logout(): Promise<void> {
+export async function logout(): Promise<void> {
+  await initializeCsrf();
+
   return apiRequest<void>('/api/logout', {
     method: 'POST',
   });

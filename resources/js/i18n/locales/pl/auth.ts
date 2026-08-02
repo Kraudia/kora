@@ -1,4 +1,15 @@
 export const authTranslations = {
+  navbar: {
+    ariaLabel: 'Główna nawigacja',
+    actions: {
+      login: 'Zaloguj się',
+      register: 'Utwórz konto',
+      logout: 'Wyloguj się',
+      loggingOut: 'Wylogowywanie…',
+    },
+    logoutError: 'Nie udało się wylogować. Spróbuj ponownie.',
+  },
+
   login: {
     title: 'Witaj ponownie',
     description: 'Wprowadź swoje dane, aby zalogować się do konta.',
