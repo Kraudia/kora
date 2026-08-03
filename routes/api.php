@@ -16,5 +16,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/family-trees', [FamilyTreeController::class, 'index']);
     Route::post('/family-trees', [FamilyTreeController::class, 'store']);
 });

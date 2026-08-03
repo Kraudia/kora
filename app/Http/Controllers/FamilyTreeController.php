@@ -7,11 +7,26 @@ use App\Http\Resources\FamilyTreeResource;
 use App\Models\FamilyTree;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class FamilyTreeController extends Controller
 {
+    public function index(Request $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        $familyTrees = $user->familyTrees()
+            ->orderBy('family_trees.id')
+            ->get();
+
+        return response()->json([
+            'family_trees' => FamilyTreeResource::collection($familyTrees),
+        ]);
+    }
+
     public function store(StoreFamilyTreeRequest $request): JsonResponse
     {
         /** @var User $user */
