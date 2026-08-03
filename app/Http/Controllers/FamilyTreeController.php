@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class FamilyTreeController extends Controller
@@ -50,6 +51,19 @@ class FamilyTreeController extends Controller
         return response()->json([
             'family_tree' => new FamilyTreeResource($familyTree),
         ], 201);
+    }
+
+    public function show(Request $request, FamilyTree $familyTree): JsonResponse
+    {
+        Gate::authorize('view', $familyTree);
+
+        /** @var User $user */
+        $user = $request->user();
+        $familyTree = $user->familyTrees()->findOrFail($familyTree->id);
+
+        return response()->json([
+            'family_tree' => new FamilyTreeResource($familyTree),
+        ]);
     }
 
     private function uniqueSlug(string $name): string
