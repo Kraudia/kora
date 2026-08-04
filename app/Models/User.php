@@ -19,6 +19,15 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * The model's default values for attributes.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'onboarding_skipped_at' => null,
+    ];
+
+    /**
      * Get the family trees the user belongs to.
      */
     public function familyTrees(): BelongsToMany
@@ -37,6 +46,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'onboarding_skipped_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

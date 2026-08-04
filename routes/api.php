@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FamilyTreeController;
+use App\Http\Controllers\OnboardingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/onboarding/skip', [OnboardingController::class, 'skip']);
     Route::get('/family-trees', [FamilyTreeController::class, 'index']);
     Route::post('/family-trees', [FamilyTreeController::class, 'store']);
     Route::get('/family-trees/{familyTree:slug}', [FamilyTreeController::class, 'show']);
