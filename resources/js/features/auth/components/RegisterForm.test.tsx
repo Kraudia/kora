@@ -28,7 +28,7 @@ async function fillForm(passwordConfirmation = 'sekretne-haslo') {
 }
 
 describe('RegisterForm', () => {
-  it('nie wysyła formularza, gdy hasła są różne', async () => {
+  it('does not submit when passwords do not match', async () => {
     const { onSubmit } = renderForm();
     const user = await fillForm('inne-haslo');
 
@@ -38,7 +38,7 @@ describe('RegisterForm', () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
-  it('wysyła poprawne dane rejestracji', async () => {
+  it('submits valid registration data', async () => {
     const { onSubmit } = renderForm();
     const user = await fillForm();
 
@@ -53,7 +53,7 @@ describe('RegisterForm', () => {
     });
   });
 
-  it('pokazuje błąd serwera i stan wysyłania', () => {
+  it('shows a server error and the pending state', () => {
     renderForm({ isPending: true, serverError: 'Adres e-mail jest już zajęty.' });
 
     expect(screen.getByText('Adres e-mail jest już zajęty.')).toBeInTheDocument();

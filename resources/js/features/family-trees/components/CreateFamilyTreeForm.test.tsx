@@ -13,7 +13,7 @@ function renderForm(props: Partial<React.ComponentProps<typeof CreateFamilyTreeF
 }
 
 describe('CreateFamilyTreeForm', () => {
-  it('pokazuje nagłówek i opis onboardingu', () => {
+  it('shows the onboarding heading and description', () => {
     renderForm();
 
     expect(
@@ -26,7 +26,7 @@ describe('CreateFamilyTreeForm', () => {
     ['', 'Podaj nazwę drzewa.'],
     ['A', 'Nazwa drzewa musi mieć co najmniej 2 znaki.'],
     ['A'.repeat(101), 'Nazwa drzewa może mieć maksymalnie 100 znaków.'],
-  ])('waliduje nazwę drzewa: %s', async (name, message) => {
+  ])('validates the family tree name: %s', async (name, message) => {
     const { onSubmit } = renderForm();
     const user = userEvent.setup();
 
@@ -40,7 +40,7 @@ describe('CreateFamilyTreeForm', () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
-  it('przycina nazwę przed wysłaniem', async () => {
+  it('trims the name before submission', async () => {
     const { onSubmit } = renderForm();
     const user = userEvent.setup();
 
@@ -53,13 +53,13 @@ describe('CreateFamilyTreeForm', () => {
     });
   });
 
-  it('pokazuje błąd walidacyjny API przy polu', async () => {
+  it('shows an API validation error next to the field', async () => {
     renderForm({ serverNameError: 'Nazwa drzewa jest nieprawidłowa.' });
 
     expect(await screen.findByText('Nazwa drzewa jest nieprawidłowa.')).toBeInTheDocument();
   });
 
-  it('blokuje oba działania podczas tworzenia drzewa', () => {
+  it('disables both actions while creating a family tree', () => {
     renderForm({ isCreating: true });
 
     expect(screen.getByRole('button', { name: 'Tworzenie drzewa…' })).toBeDisabled();
@@ -67,7 +67,7 @@ describe('CreateFamilyTreeForm', () => {
     expect(screen.getByLabelText('Nazwa drzewa')).toBeDisabled();
   });
 
-  it('wywołuje pominięcie', async () => {
+  it('calls the skip handler', async () => {
     const { onSkip } = renderForm();
     const user = userEvent.setup();
 
@@ -76,7 +76,7 @@ describe('CreateFamilyTreeForm', () => {
     expect(onSkip).toHaveBeenCalledOnce();
   });
 
-  it('blokuje oba działania podczas pomijania', () => {
+  it('disables both actions while skipping onboarding', () => {
     renderForm({ isSkipping: true });
 
     expect(screen.getByRole('button', { name: 'Pomijanie…' })).toBeDisabled();

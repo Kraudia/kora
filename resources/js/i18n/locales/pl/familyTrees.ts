@@ -1,4 +1,9 @@
 export const familyTreeTranslations = {
+  routing: {
+    loading: 'Ładowanie aplikacji…',
+    userError: 'Nie udało się pobrać danych użytkownika.',
+    treesError: 'Nie udało się pobrać drzew genealogicznych.',
+  },
   home: {
     title: 'Nie należysz jeszcze do żadnego drzewa.',
     description: 'Możesz utworzyć własne drzewo lub poczekać na zaproszenie.',

@@ -34,7 +34,7 @@ function renderPage() {
       <MemoryRouter initialEntries={['/login']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/home" element={<p>Panel użytkownika</p>} />
+          <Route path="/home" element={<p>Application context</p>} />
         </Routes>
       </MemoryRouter>
     </QueryClientProvider>,
@@ -47,7 +47,7 @@ describe('LoginPage', () => {
     vi.clearAllMocks();
   });
 
-  it('loguje użytkownika, zapisuje go w cache i przechodzi do panelu', async () => {
+  it('logs the user in, caches the user, and opens the application context', async () => {
     const user = {
       id: 1,
       name: 'Jan Kowalski',
@@ -59,7 +59,7 @@ describe('LoginPage', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Wyślij logowanie' }));
 
-    expect(await screen.findByText('Panel użytkownika')).toBeInTheDocument();
+    expect(await screen.findByText('Application context')).toBeInTheDocument();
     expect(vi.mocked(login).mock.calls[0][0]).toEqual({
       email: 'jan@example.com',
       password: 'haslo123',
@@ -68,7 +68,7 @@ describe('LoginPage', () => {
     expect(queryClient.getQueryData(['auth', 'user'])).toEqual(user);
   });
 
-  it('przekazuje komunikat błędu do formularza', async () => {
+  it('passes an error message to the form', async () => {
     vi.mocked(login).mockRejectedValue(new Error('Nieprawidłowy e-mail lub hasło.'));
     renderPage();
 

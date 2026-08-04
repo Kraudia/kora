@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router';
 import { queryClient } from '@/app/queryClient';
 import { Button } from '@/components/ui/button';
 import { logout } from '@/features/auth/api/authApi';
-import { useCurrentUser } from '@/features/auth/hooks/useCurrentUser';
+import { currentUserQueryKey, useCurrentUser } from '@/features/auth/hooks/useCurrentUser';
+import { familyTreeQueryKeys } from '@/features/family-trees/hooks/familyTreeQueryKeys';
 import { authTranslations } from '@/i18n/locales/pl/auth';
 
 const translations = authTranslations.navbar;
@@ -15,7 +16,8 @@ export function AppNavbar() {
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      queryClient.removeQueries({ queryKey: ['auth', 'user'] });
+      queryClient.removeQueries({ queryKey: currentUserQueryKey });
+      queryClient.removeQueries({ queryKey: familyTreeQueryKeys.all });
       navigate('/login', { replace: true });
     },
   });

@@ -17,7 +17,7 @@ function renderForm(props: Partial<React.ComponentProps<typeof LoginForm>> = {})
 }
 
 describe('LoginForm', () => {
-  it('pokazuje błędy walidacji i nie wysyła pustego formularza', async () => {
+  it('shows validation errors and does not submit an empty form', async () => {
     const user = userEvent.setup();
     const { onSubmit } = renderForm();
 
@@ -28,7 +28,7 @@ describe('LoginForm', () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
-  it('wysyła poprawne dane logowania', async () => {
+  it('submits valid login data', async () => {
     const user = userEvent.setup();
     const { onSubmit } = renderForm();
 
@@ -43,7 +43,7 @@ describe('LoginForm', () => {
     });
   });
 
-  it('pokazuje błąd serwera i stan wysyłania', () => {
+  it('shows a server error and the pending state', () => {
     renderForm({ isPending: true, serverError: 'Nieprawidłowe dane.' });
 
     expect(screen.getByRole('alert')).toHaveTextContent('Nieprawidłowe dane.');

@@ -48,7 +48,7 @@ function renderPage() {
       <MemoryRouter initialEntries={['/register']}>
         <Routes>
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/onboarding" element={<p>Panel użytkownika</p>} />
+          <Route path="/home" element={<p>Application context</p>} />
         </Routes>
       </MemoryRouter>
     </QueryClientProvider>,
@@ -61,7 +61,7 @@ describe('RegisterPage', () => {
     vi.clearAllMocks();
   });
 
-  it('rejestruje użytkownika, zapisuje go w cache i przechodzi do panelu', async () => {
+  it('registers the user, caches the user, and opens the application context', async () => {
     const user = {
       id: 1,
       name: 'Jan Kowalski',
@@ -73,7 +73,7 @@ describe('RegisterPage', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Wyślij rejestrację' }));
 
-    expect(await screen.findByText('Panel użytkownika')).toBeInTheDocument();
+    expect(await screen.findByText('Application context')).toBeInTheDocument();
     expect(vi.mocked(register).mock.calls[0][0]).toEqual({
       name: 'Jan Kowalski',
       email: 'jan@example.com',
@@ -83,7 +83,7 @@ describe('RegisterPage', () => {
     expect(queryClient.getQueryData(['auth', 'user'])).toEqual(user);
   });
 
-  it('przekazuje komunikat błędu do formularza', async () => {
+  it('passes an error message to the form', async () => {
     vi.mocked(register).mockRejectedValue(new Error('Konto z tym adresem e-mail już istnieje.'));
     renderPage();
 

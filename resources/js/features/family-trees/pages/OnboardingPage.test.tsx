@@ -46,8 +46,8 @@ function renderPage() {
     <MemoryRouter initialEntries={['/onboarding']}>
       <Routes>
         <Route path="/onboarding" element={<OnboardingPage />} />
-        <Route path="/trees/:treeSlug" element={<p>Strona utworzonego drzewa</p>} />
-        <Route path="/home" element={<p>Strona główna</p>} />
+        <Route path="/trees/:treeSlug" element={<p>Created family tree page</p>} />
+        <Route path="/home" element={<p>Home page</p>} />
       </Routes>
     </MemoryRouter>,
   );
@@ -59,7 +59,7 @@ describe('OnboardingPage', () => {
     mockMutations();
   });
 
-  it('po utworzeniu drzewa przechodzi do jego strony', async () => {
+  it('navigates to the created family tree', async () => {
     const user = userEvent.setup();
     renderPage();
 
@@ -79,10 +79,10 @@ describe('OnboardingPage', () => {
 
     act(() => options.onSuccess(familyTree));
 
-    expect(await screen.findByText('Strona utworzonego drzewa')).toBeInTheDocument();
+    expect(await screen.findByText('Created family tree page')).toBeInTheDocument();
   });
 
-  it('po pominięciu przechodzi do strony głównej', async () => {
+  it('navigates to home after onboarding is skipped', async () => {
     const user = userEvent.setup();
     renderPage();
 
@@ -99,10 +99,10 @@ describe('OnboardingPage', () => {
 
     act(() => options.onSuccess());
 
-    expect(await screen.findByText('Strona główna')).toBeInTheDocument();
+    expect(await screen.findByText('Home page')).toBeInTheDocument();
   });
 
-  it('pokazuje błąd walidacyjny zwrócony przez Laravel', async () => {
+  it('shows a validation error returned by Laravel', async () => {
     mockMutations({
       createError: new ApiError('Dane są nieprawidłowe.', 422, {
         name: ['Nazwa drzewa jest nieprawidłowa.'],
@@ -114,7 +114,7 @@ describe('OnboardingPage', () => {
     expect(screen.queryByText('Dane są nieprawidłowe.')).not.toBeInTheDocument();
   });
 
-  it('pokazuje ogólny błąd API podczas tworzenia', () => {
+  it('shows a general API error during creation', () => {
     mockMutations({
       createError: new ApiError('Serwer jest chwilowo niedostępny.', 500),
     });

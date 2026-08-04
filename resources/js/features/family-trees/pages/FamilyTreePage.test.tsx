@@ -50,7 +50,7 @@ describe('FamilyTreePage', () => {
     vi.clearAllMocks();
   });
 
-  it('pobiera drzewo na podstawie sluga i pokazuje stan ładowania', () => {
+  it('loads a family tree by slug and shows the loading state', () => {
     mockQueryResult({ isPending: true });
 
     renderPage();
@@ -59,7 +59,7 @@ describe('FamilyTreePage', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Ładowanie drzewa…');
   });
 
-  it('pokazuje nazwę, rolę i placeholder drzewa', () => {
+  it('shows the family tree name, role, and placeholder', () => {
     mockQueryResult({ data: familyTree });
 
     renderPage();
@@ -69,7 +69,7 @@ describe('FamilyTreePage', () => {
     expect(screen.getByText('Tutaj pojawi się Twoje drzewo genealogiczne.')).toBeInTheDocument();
   });
 
-  it('pokazuje komunikat braku dostępu dla błędu 403', () => {
+  it('shows an access denied message for a 403 response', () => {
     mockQueryResult({ error: new ApiError('Forbidden', 403) });
 
     renderPage();
@@ -79,7 +79,7 @@ describe('FamilyTreePage', () => {
     );
   });
 
-  it('pokazuje komunikat braku drzewa dla błędu 404', () => {
+  it('shows a missing family tree message for a 404 response', () => {
     mockQueryResult({ error: new ApiError('Not found', 404) });
 
     renderPage();

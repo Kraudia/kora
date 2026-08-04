@@ -9,14 +9,14 @@ function renderPage() {
     <MemoryRouter initialEntries={['/home']}>
       <Routes>
         <Route path="/home" element={<HomePage />} />
-        <Route path="/onboarding" element={<p>Onboarding drzewa</p>} />
+        <Route path="/onboarding" element={<p>Family tree onboarding</p>} />
       </Routes>
     </MemoryRouter>,
   );
 }
 
 describe('HomePage', () => {
-  it('pokazuje pusty stan użytkownika bez drzewa', () => {
+  it('shows the empty state for a user without a family tree', () => {
     renderPage();
 
     expect(
@@ -27,12 +27,12 @@ describe('HomePage', () => {
     ).toBeInTheDocument();
   });
 
-  it('prowadzi do onboardingu', async () => {
+  it('links to onboarding', async () => {
     const user = userEvent.setup();
     renderPage();
 
     await user.click(screen.getByRole('link', { name: 'Utwórz drzewo' }));
 
-    expect(await screen.findByText('Onboarding drzewa')).toBeInTheDocument();
+    expect(await screen.findByText('Family tree onboarding')).toBeInTheDocument();
   });
 });
