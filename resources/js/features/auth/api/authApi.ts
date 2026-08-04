@@ -1,10 +1,10 @@
-import { apiRequest } from '@/shared/api/apiClient';
+import { apiRequest, initializeCsrf } from '@/shared/api/apiClient';
 
 export type User = {
   id: number;
   name: string;
-
   email: string;
+  onboarding_skipped_at: string | null;
 };
 
 export type LoginData = {
@@ -19,15 +19,6 @@ export type RegisterData = {
   password: string;
   password_confirmation: string;
 };
-
-async function initializeCsrf(): Promise<void> {
-  await fetch('/sanctum/csrf-cookie', {
-    credentials: 'include',
-    headers: {
-      Accept: 'application/json',
-    },
-  });
-}
 
 export async function login(data: LoginData): Promise<{ user: User }> {
   await initializeCsrf();

@@ -62,7 +62,12 @@ describe('RegisterPage', () => {
   });
 
   it('rejestruje użytkownika, zapisuje go w cache i przechodzi do panelu', async () => {
-    const user = { id: 1, name: 'Jan Kowalski', email: 'jan@example.com' };
+    const user = {
+      id: 1,
+      name: 'Jan Kowalski',
+      email: 'jan@example.com',
+      onboarding_skipped_at: null,
+    };
     vi.mocked(register).mockResolvedValue({ user });
     renderPage();
 

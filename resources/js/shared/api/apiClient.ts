@@ -23,6 +23,15 @@ function getCookie(name: string): string | undefined {
   return cookie ? decodeURIComponent(cookie.split('=').slice(1).join('=')) : undefined;
 }
 
+export async function initializeCsrf(): Promise<void> {
+  await fetch('/sanctum/csrf-cookie', {
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+    },
+  });
+}
+
 export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const csrfToken = getCookie('XSRF-TOKEN');
 
