@@ -48,7 +48,7 @@ function renderPage() {
       <MemoryRouter initialEntries={['/register']}>
         <Routes>
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<p>Panel użytkownika</p>} />
+          <Route path="/onboarding" element={<p>Panel użytkownika</p>} />
         </Routes>
       </MemoryRouter>
     </QueryClientProvider>,

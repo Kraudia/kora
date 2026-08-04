@@ -1,4 +1,9 @@
 export const familyTreeTranslations = {
+  home: {
+    title: 'Nie należysz jeszcze do żadnego drzewa.',
+    description: 'Możesz utworzyć własne drzewo lub poczekać na zaproszenie.',
+    createAction: 'Utwórz drzewo',
+  },
   onboarding: {
     title: 'Utwórz swoje drzewo rodzinne',
     description:

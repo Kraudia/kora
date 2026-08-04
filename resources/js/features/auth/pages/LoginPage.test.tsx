@@ -34,7 +34,7 @@ function renderPage() {
       <MemoryRouter initialEntries={['/login']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<p>Panel użytkownika</p>} />
+          <Route path="/home" element={<p>Panel użytkownika</p>} />
         </Routes>
       </MemoryRouter>
     </QueryClientProvider>,

@@ -13,7 +13,7 @@ export function LoginPage() {
     mutationFn: login,
     onSuccess: ({ user }) => {
       queryClient.setQueryData(['auth', 'user'], user);
-      navigate('/dashboard');
+      navigate('/home');
     },
   });
 

@@ -3,14 +3,11 @@ import { AppLayout } from '@/app/AppLayout';
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { RegisterPage } from '@/features/auth/pages/RegisterPage';
 import { FamilyTreePage } from '@/features/family-trees/pages/FamilyTreePage';
+import { HomePage } from '@/features/family-trees/pages/HomePage';
 import { OnboardingPage } from '@/features/family-trees/pages/OnboardingPage';
 
-function HomePage() {
+function LandingPage() {
   return <h1>Kora</h1>;
-}
-
-function DashboardPage() {
-  return <h1>Panel użytkownika</h1>;
 }
 
 export const router = createBrowserRouter([
@@ -19,11 +16,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage />,
+        element: <LandingPage />,
       },
       {
-        path: '/dashboard',
-        element: <DashboardPage />,
+        path: '/home',
+        element: <HomePage />,
       },
       {
         path: '/trees/:treeSlug',

@@ -12,7 +12,7 @@ export function RegisterPage() {
     mutationFn: register,
     onSuccess: ({ user }) => {
       queryClient.setQueryData(['auth', 'user'], user);
-      navigate('/dashboard');
+      navigate('/onboarding');
     },
   });
 
