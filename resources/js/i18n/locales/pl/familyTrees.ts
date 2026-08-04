@@ -1,4 +1,30 @@
 export const familyTreeTranslations = {
+  onboarding: {
+    title: 'Utwórz swoje drzewo rodzinne',
+    description:
+      'Nadaj drzewu nazwę, aby rozpocząć budowanie historii swojej rodziny. Możesz też zrobić to później.',
+    fields: {
+      name: {
+        label: 'Nazwa drzewa',
+        placeholder: 'Rodzina Kowalskich',
+      },
+    },
+    validation: {
+      nameRequired: 'Podaj nazwę drzewa.',
+      nameTooShort: 'Nazwa drzewa musi mieć co najmniej 2 znaki.',
+      nameTooLong: 'Nazwa drzewa może mieć maksymalnie 100 znaków.',
+    },
+    actions: {
+      create: 'Utwórz drzewo',
+      creating: 'Tworzenie drzewa…',
+      skip: 'Pomiń na razie',
+      skipping: 'Pomijanie…',
+    },
+    errors: {
+      create: 'Nie udało się utworzyć drzewa. Spróbuj ponownie.',
+      skip: 'Nie udało się pominąć tego kroku. Spróbuj ponownie.',
+    },
+  },
   page: {
     loading: 'Ładowanie drzewa…',
     roleLabel: 'Rola:',
